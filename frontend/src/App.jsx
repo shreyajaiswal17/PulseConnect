@@ -5,7 +5,7 @@ import Home from './pages/Home'
 import About from './pages/About'
 import Services from './pages/Services'
 import Features from './pages/Features'
-import Appointment from './pages/Appointment'
+// import Appointment from './pages/Appointment'
 import Blog from './pages/Blog'
 import Contact from './pages/Contact'
 import NotFound from './pages/NotFound'
@@ -20,7 +20,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
           <Route path="/features" element={<Features />} />
-          <Route path="/appointment" element={<Appointment />} />
+          {/* <Route path="/appointment" element={<Appointment />} /> */}
           <Route path="/blog" element={<Blog />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
