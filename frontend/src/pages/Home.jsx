@@ -1,3 +1,5 @@
+import About from './About';
+
 const Home = () => {
   return (
     <div>
@@ -29,6 +31,7 @@ const Home = () => {
       </section>
 
       {/* Content sections will be added here */}
+      <About />
     </div>
   )
 }
