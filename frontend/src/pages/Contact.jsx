@@ -149,41 +149,174 @@
 // }
 
 // export default Contact
-import { useState } from 'react'
+// import { useState } from 'react'
+
+// const Contact = () => {
+//   const [formData, setFormData] = useState({
+//     name: '',
+//     emailid: '',
+//     msgContent: ''
+//   })
+
+//   const [showAlert, setShowAlert] = useState(false)
+
+//   const handleChange = (e) => {
+//     setFormData({
+//       ...formData,
+//       [e.target.name]: e.target.value
+//     })
+//   }
+
+//   const handleSubmit = (e) => {
+//     e.preventDefault()
+
+//     console.log('Contact Form Data:', formData)
+
+//     setShowAlert(true)
+
+//     setFormData({
+//       name: '',
+//       emailid: '',
+//       msgContent: ''
+//     })
+
+//     setTimeout(() => {
+//       setShowAlert(false)
+//     }, 3000)
+//   }
+
+//   return (
+//     <section className="bg-[#F5EFE6] min-h-screen py-16">
+//       <div className="container mx-auto px-4">
+//         <div className="max-w-4xl mx-auto">
+
+//           <h1 className="text-4xl md:text-5xl font-display font-bold text-primary mb-4 text-center">
+//             Contact Us
+//           </h1>
+
+//           <p className="text-center text-gray-600 mb-8">
+//             Get in touch with us for any queries or support
+//           </p>
+
+//           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+//             {/* Contact Info */}
+//             <div className="space-y-6">
+//               <div className="bg-white shadow-lg rounded-lg p-6">
+//                 <h3 className="font-semibold text-lg mb-1">Address</h3>
+//                 <p className="text-gray-600">New Delhi, India</p>
+//               </div>
+
+//               <div className="bg-white shadow-lg rounded-lg p-6">
+//                 <h3 className="font-semibold text-lg mb-1">Phone</h3>
+//                 <p className="text-gray-600">+91 8674392xxx</p>
+//               </div>
+
+//               <div className="bg-white shadow-lg rounded-lg p-6">
+//                 <h3 className="font-semibold text-lg mb-1">Email</h3>
+//                 <p className="text-gray-600">Umang@gmail.com</p>
+//               </div>
+//             </div>
+
+//             {/* Contact Form */}
+//             <div className="bg-white shadow-lg rounded-lg p-8">
+//               {showAlert && (
+//                 <div className="mb-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded">
+//                   Message sent successfully!
+//                 </div>
+//               )}
+
+//               <form onSubmit={handleSubmit} className="space-y-6">
+//                 <input
+//                   type="text"
+//                   name="name"
+//                   placeholder="Your Name"
+//                   value={formData.name}
+//                   onChange={handleChange}
+//                   className="w-full px-4 py-3 border border-gray-300 rounded-md"
+//                   required
+//                 />
+
+//                 <input
+//                   type="email"
+//                   name="emailid"
+//                   placeholder="Your Email"
+//                   value={formData.emailid}
+//                   onChange={handleChange}
+//                   className="w-full px-4 py-3 border border-gray-300 rounded-md"
+//                   required
+//                 />
+
+//                 <textarea
+//                   name="msgContent"
+//                   placeholder="Your Message"
+//                   value={formData.msgContent}
+//                   onChange={handleChange}
+//                   rows="5"
+//                   className="w-full px-4 py-3 border border-gray-300 rounded-md"
+//                   required
+//                 ></textarea>
+
+//                 <button
+//                   type="submit"
+//                   className="w-full btn-primary"
+//                 >
+//                   Send Message
+//                 </button>
+//               </form>
+//             </div>
+
+//           </div>
+//         </div>
+//       </div>
+//     </section>
+//   )
+// }
+
+// export default Contact
+
+import { useState } from 'react';
+import axios from 'axios';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
     emailid: '',
     msgContent: ''
-  })
+  });
 
-  const [showAlert, setShowAlert] = useState(false)
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState('');
+  const [error, setError] = useState('');
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
-    })
-  }
+    });
+  };
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setSuccess('');
+    setError('');
 
-    console.log('Contact Form Data:', formData)
+    try {
+      const res = await axios.post('http://localhost:5000/api/contact', {
+        name: formData.name,
+        email: formData.emailid,     // map to backend expected field
+        message: formData.msgContent
+      });
 
-    setShowAlert(true)
-
-    setFormData({
-      name: '',
-      emailid: '',
-      msgContent: ''
-    })
-
-    setTimeout(() => {
-      setShowAlert(false)
-    }, 3000)
-  }
+      setSuccess(res.data?.message || 'Message sent successfully!');
+      setFormData({ name: '', emailid: '', msgContent: '' });
+    } catch (err) {
+      setError(err.response?.data?.message || 'Failed to send message. Try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <section className="bg-[#F5EFE6] min-h-screen py-16">
@@ -214,15 +347,22 @@ const Contact = () => {
 
               <div className="bg-white shadow-lg rounded-lg p-6">
                 <h3 className="font-semibold text-lg mb-1">Email</h3>
-                <p className="text-gray-600">Umang@gmail.com</p>
+                <p className="text-gray-600">info@pulseconnect.com</p>
               </div>
             </div>
 
             {/* Contact Form */}
             <div className="bg-white shadow-lg rounded-lg p-8">
-              {showAlert && (
+
+              {success && (
                 <div className="mb-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded">
-                  Message sent successfully!
+                  {success}
+                </div>
+              )}
+
+              {error && (
+                <div className="mb-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+                  {error}
                 </div>
               )}
 
@@ -255,13 +395,14 @@ const Contact = () => {
                   rows="5"
                   className="w-full px-4 py-3 border border-gray-300 rounded-md"
                   required
-                ></textarea>
+                />
 
                 <button
                   type="submit"
-                  className="w-full btn-primary"
+                  disabled={loading}
+                  className="w-full btn-primary disabled:opacity-60"
                 >
-                  Send Message
+                  {loading ? 'Sending...' : 'Send Message'}
                 </button>
               </form>
             </div>
@@ -270,8 +411,7 @@ const Contact = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Contact
-
+export default Contact;
