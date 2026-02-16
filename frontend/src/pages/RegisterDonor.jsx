@@ -5,9 +5,11 @@ import axios from 'axios';
 const RegisterDonor = () => {
   const [formData, setFormData] = useState({
     name: '',
+    email: '',
     bloodGroup: '',
     city: '',
-    phone: ''
+    phone: '',
+    receiveAlerts: true
   });
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
@@ -16,9 +18,10 @@ const RegisterDonor = () => {
   const bloodGroups = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
 
   const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [name]: type === 'checkbox' ? checked : value
     });
   };
 
@@ -31,7 +34,7 @@ const RegisterDonor = () => {
     try {
       const response = await axios.post('http://localhost:5000/api/donors', formData);
       setMessage(response.data.message);
-      setFormData({ name: '', bloodGroup: '', city: '', phone: '' });
+      setFormData({ name: '', email: '', bloodGroup: '', city: '', phone: '', receiveAlerts: true });
     } catch (err) {
       setError(err.response?.data?.message || 'Something went wrong!');
     } finally {
@@ -76,6 +79,22 @@ const RegisterDonor = () => {
                 required
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#17153B]"
                 placeholder="Enter your full name"
+              />
+            </div>
+
+            {/* Email */}
+            <div>
+              <label className="block text-gray-700 font-medium mb-2">
+                Email Address <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#17153B]"
+                placeholder="your.email@example.com"
               />
             </div>
 
@@ -129,6 +148,23 @@ const RegisterDonor = () => {
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#17153B]"
                 placeholder="Enter 10-digit phone number"
               />
+            </div>
+
+            {/* Notification Preferences */}
+            <div className="flex items-start space-x-3 p-4 bg-green-50 rounded-lg border border-green-200">
+              <input
+                type="checkbox"
+                name="receiveAlerts"
+                checked={formData.receiveAlerts}
+                onChange={handleChange}
+                className="mt-1 w-4 h-4 text-green-600 border-gray-300 rounded focus:ring-green-500"
+              />
+              <label className="text-gray-700 text-sm">
+                <span className="font-medium">Send me email notifications for urgent blood requests</span>
+                <p className="text-gray-600 mt-1">
+                  You'll only receive emails when someone in your city needs your blood group. You can change this preference anytime.
+                </p>
+              </label>
             </div>
 
             {/* Submit Button */}

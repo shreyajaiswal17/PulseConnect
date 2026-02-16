@@ -7,17 +7,24 @@ const router = express.Router();
 
 router.post('/', async (req, res) => {
   try {
-    const { name, bloodGroup, city, phone } = req.body;
+    const { name, email, bloodGroup, city, phone, receiveAlerts } = req.body;
 
-    if (!name || !bloodGroup || !city || !phone) {
-      return res.status(400).json({ message: 'All fields are required' });
+    if (!name || !email || !bloodGroup || !city || !phone) {
+      return res.status(400).json({ message: 'All required fields must be filled' });
     }
 
-    const donor = new Donor({ name, bloodGroup, city, phone });
+    const donor = new Donor({ 
+      name, 
+      email, 
+      bloodGroup, 
+      city, 
+      phone, 
+      receiveAlerts: receiveAlerts !== undefined ? receiveAlerts : true 
+    });
     await donor.save();
 
     res.status(201).json({ 
-      message: 'Donor registered successfully!',
+      message: 'Donor registered successfully! 🎉',
       donor 
     });
   } catch (error) {

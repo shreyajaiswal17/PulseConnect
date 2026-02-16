@@ -6,6 +6,12 @@ const requestSchema = new mongoose.Schema({
     required: true,
     trim: true
   },
+  requesterEmail: {
+    type: String,
+    required: true,
+    trim: true,
+    lowercase: true
+  },
   bloodGroup: {
     type: String,
     required: true,

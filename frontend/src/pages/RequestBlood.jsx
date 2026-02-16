@@ -6,6 +6,7 @@ const RequestBlood = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     patientName: '',
+    requesterEmail: '',
     bloodGroup: '',
     city: '',
     phone: '',
@@ -72,6 +73,23 @@ const RequestBlood = () => {
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#17153B]"
                 placeholder="Enter patient name"
               />
+            </div>
+
+            {/* Your Email */}
+            <div>
+              <label className="block text-gray-700 font-medium mb-2">
+                Your Email Address <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="email"
+                name="requesterEmail"
+                value={formData.requesterEmail}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#17153B]"
+                placeholder="your.email@example.com"
+              />
+              <p className="text-sm text-gray-500 mt-1">We'll send you confirmation and donor contact details</p>
             </div>
 
             {/* Blood Group */}
