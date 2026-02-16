@@ -8,6 +8,14 @@ import App from './App.jsx';
 const domain = import.meta.env.VITE_AUTH0_DOMAIN;
 const clientId = import.meta.env.VITE_AUTH0_CLIENT_ID;
 
+const onRedirectCallback = (appState) => {
+  window.history.replaceState(
+    {},
+    document.title,
+    appState?.returnTo || '/dashboard'
+  );
+};
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Auth0Provider
@@ -16,6 +24,7 @@ createRoot(document.getElementById('root')).render(
       authorizationParams={{
         redirect_uri: window.location.origin
       }}
+      onRedirectCallback={onRedirectCallback}
     >
       <BrowserRouter>
         <App />

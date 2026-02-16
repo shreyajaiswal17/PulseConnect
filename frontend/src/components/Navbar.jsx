@@ -286,40 +286,33 @@ const Navbar = () => {
 
             {/* Desktop Menu */}
             <div className="hidden md:flex items-center space-x-8 text-xl">
-              <NavLink to="/" end className={navLinkClass}>
-                Home
-              </NavLink>
+              {!isAuthenticated ? (
+                <>
+                  <NavLink to="/" end className={navLinkClass}>
+                    Home
+                  </NavLink>
 
-              <NavLink to="/about" className={navLinkClass}>
-                About
-              </NavLink>
+                  <NavLink to="/about" className={navLinkClass}>
+                    About
+                  </NavLink>
 
-              <NavLink to="/services" className={navLinkClass}>
-                Availability
-              </NavLink>
+                  <NavLink to="/services" className={navLinkClass}>
+                    Availability
+                  </NavLink>
 
-              <NavLink to="/features" className={navLinkClass}>
-                Perks
-              </NavLink>
+                  <NavLink to="/features" className={navLinkClass}>
+                    Perks
+                  </NavLink>
 
-              <NavLink to="/contact" className={navLinkClass}>
-                Contact Us
-              </NavLink>
-
-              {/* CTA Buttons (Protected) */}
-              <button
-                onClick={() => handleProtectedClick("/register-donor")}
-                className="bg-green-600 text-white px-5 py-2 rounded-full font-semibold hover:bg-green-700 transition duration-300"
-              >
-                Become a Donor
-              </button>
-
-              <button
-                onClick={() => handleProtectedClick("/request-blood")}
-                className="bg-red-600 text-white px-5 py-2 rounded-full font-semibold hover:bg-red-700 transition duration-300"
-              >
-                Request Blood
-              </button>
+                  <NavLink to="/contact" className={navLinkClass}>
+                    Contact Us
+                  </NavLink>
+                </>
+              ) : (
+                <NavLink to="/dashboard" className={navLinkClass}>
+                  Dashboard
+                </NavLink>
+              )}
 
               {/* Auth Button */}
               <AuthButton />
@@ -340,45 +333,33 @@ const Navbar = () => {
           {isOpen && (
             <div className="md:hidden pb-6">
               <div className="flex flex-col space-y-5 text-lg mt-4">
-                <NavLink to="/" end onClick={toggleMenu} className={navLinkClass}>
-                  Home
-                </NavLink>
+                {!isAuthenticated ? (
+                  <>
+                    <NavLink to="/" end onClick={toggleMenu} className={navLinkClass}>
+                      Home
+                    </NavLink>
 
-                <NavLink to="/about" onClick={toggleMenu} className={navLinkClass}>
-                  About
-                </NavLink>
+                    <NavLink to="/about" onClick={toggleMenu} className={navLinkClass}>
+                      About
+                    </NavLink>
 
-                <NavLink to="/services" onClick={toggleMenu} className={navLinkClass}>
-                  Availability
-                </NavLink>
+                    <NavLink to="/services" onClick={toggleMenu} className={navLinkClass}>
+                      Availability
+                    </NavLink>
 
-                <NavLink to="/features" onClick={toggleMenu} className={navLinkClass}>
-                  Perks
-                </NavLink>
+                    <NavLink to="/features" onClick={toggleMenu} className={navLinkClass}>
+                      Perks
+                    </NavLink>
 
-                <NavLink to="/contact" onClick={toggleMenu} className={navLinkClass}>
-                  Contact Us
-                </NavLink>
-
-                <button
-                  onClick={() => {
-                    toggleMenu();
-                    handleProtectedClick("/register-donor");
-                  }}
-                  className="bg-green-600 text-white px-5 py-2 rounded-full font-semibold hover:bg-green-700 transition duration-300 text-center"
-                >
-                  Become a Donor
-                </button>
-
-                <button
-                  onClick={() => {
-                    toggleMenu();
-                    handleProtectedClick("/request-blood");
-                  }}
-                  className="bg-red-600 text-white px-5 py-2 rounded-full font-semibold hover:bg-red-700 transition duration-300 text-center"
-                >
-                  Request Blood
-                </button>
+                    <NavLink to="/contact" onClick={toggleMenu} className={navLinkClass}>
+                      Contact Us
+                    </NavLink>
+                  </>
+                ) : (
+                  <NavLink to="/dashboard" onClick={toggleMenu} className={navLinkClass}>
+                    Dashboard
+                  </NavLink>
+                )}
 
                 <AuthButton />
               </div>
