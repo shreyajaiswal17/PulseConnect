@@ -1,7 +1,10 @@
 // export default About
 const About = () => {
   return (
-    <div className="bg-[#EDE3D2] py-24">
+  
+
+    <div className="bg-[#F9F6F1] py-24"> 
+    {/* <div className="bg-[#EDE3D2] py-24"> */}
       <div className="container mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-12 items-center">
 
