@@ -237,15 +237,17 @@
 // };
 
 // export default Navbar;
-
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import logo from "../assets/img/bloodDonationLogo.png";
 import AuthButton from "../pages/Auth";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { isAuthenticated, loginWithRedirect } = useAuth0();
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -256,12 +258,20 @@ const Navbar = () => {
       isActive ? "text-red-600" : "text-black hover:text-red-600"
     }`;
 
+  const handleProtectedClick = (path) => {
+    if (!isAuthenticated) {
+      alert("Please login first to access this feature! Redirecting to login page...");
+      loginWithRedirect({ appState: { returnTo: path } });
+    } else {
+      navigate(path);
+    }
+  };
+
   return (
     <>
       <nav className="bg-white shadow-md fixed w-full top-0 z-50">
         <div className="container mx-auto px-2">
           <div className="flex justify-between items-center h-24">
-
             {/* Logo + Brand */}
             <NavLink to="/" end className="flex items-center gap-3">
               <img
@@ -296,20 +306,20 @@ const Navbar = () => {
                 Contact Us
               </NavLink>
 
-              {/* CTA Buttons */}
-              <NavLink
-                to="/register-donor"
+              {/* CTA Buttons (Protected) */}
+              <button
+                onClick={() => handleProtectedClick("/register-donor")}
                 className="bg-green-600 text-white px-5 py-2 rounded-full font-semibold hover:bg-green-700 transition duration-300"
               >
                 Become a Donor
-              </NavLink>
+              </button>
 
-              <NavLink
-                to="/request-blood"
+              <button
+                onClick={() => handleProtectedClick("/request-blood")}
                 className="bg-red-600 text-white px-5 py-2 rounded-full font-semibold hover:bg-red-700 transition duration-300"
               >
                 Request Blood
-              </NavLink>
+              </button>
 
               {/* Auth Button */}
               <AuthButton />
@@ -350,21 +360,25 @@ const Navbar = () => {
                   Contact Us
                 </NavLink>
 
-                <NavLink
-                  to="/register-donor"
-                  onClick={toggleMenu}
+                <button
+                  onClick={() => {
+                    toggleMenu();
+                    handleProtectedClick("/register-donor");
+                  }}
                   className="bg-green-600 text-white px-5 py-2 rounded-full font-semibold hover:bg-green-700 transition duration-300 text-center"
                 >
                   Become a Donor
-                </NavLink>
+                </button>
 
-                <NavLink
-                  to="/request-blood"
-                  onClick={toggleMenu}
+                <button
+                  onClick={() => {
+                    toggleMenu();
+                    handleProtectedClick("/request-blood");
+                  }}
                   className="bg-red-600 text-white px-5 py-2 rounded-full font-semibold hover:bg-red-700 transition duration-300 text-center"
                 >
                   Request Blood
-                </NavLink>
+                </button>
 
                 <AuthButton />
               </div>
