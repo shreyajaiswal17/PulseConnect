@@ -1,47 +1,68 @@
-// export default Features
 const Features = () => {
   const perks = [
     {
       title: "Save Lives",
-      description: "One donation can save up to three lives",
+      description:
+        "A single blood donation has the power to save up to three lives. Your contribution directly supports patients in emergencies, surgeries, and critical treatments, making a real and immediate impact on the community.",
       icon: "fa-heart"
     },
     {
       title: "Health Benefits",
-      description: "Regular donation helps maintain good health",
+      description:
+        "Regular blood donation helps maintain healthy iron levels, improves blood circulation, and may reduce the risk of certain health conditions. It’s a simple step that benefits both you and those in need.",
       icon: "fa-heartbeat"
     },
     {
       title: "Free Health Check",
-      description: "Get free health screening with every donation",
+      description:
+        "Every donation includes a basic health screening such as blood pressure, hemoglobin levels, and overall fitness checks, giving you valuable insights into your health at no cost.",
       icon: "fa-stethoscope"
     }
   ]
 
   return (
-    <section className="bg-[#F5EFE6] min-h-screen py-16">
-      <div className="container mx-auto px-4">
-        
-        <h1 className="text-4xl md:text-5xl font-display font-bold text-primary mb-8 text-center">
-          Donor Perks
-        </h1>
+    <section className="bg-[#F5EFE6] py-24">
+      <div className="max-w-5xl mx-auto px-6">
 
-        <p className="text-center text-gray-600 mb-12">
-          Benefits of being a blood donor
-        </p>
-        
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        {/* Heading */}
+        <div className="text-center mb-16">
+          <h1 className="text-4xl md:text-5xl font-semibold text-[#1A202C] mb-4">
+            Because You Care
+          </h1>
+
+          <p className="text-gray-500">
+            Donating blood isn’t just an act of kindness — it’s a life-saving superpower. Enjoy exclusive perks as a token of our gratitude for making a difference.
+          </p>
+        </div>
+
+        {/* Cards */}
+        <div className="grid md:grid-cols-3 gap-10">
           {perks.map((perk, index) => (
-            <div 
+            <div
               key={index}
-              className="bg-white shadow-lg rounded-lg p-8 text-center hover:shadow-xl transition-shadow duration-300"
+              className="group bg-white p-8 rounded-2xl border border-gray-100 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
             >
-              <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
-                <i className={`fas ${perk.icon} text-white text-2xl`}></i>
+
+              {/* Icon */}
+              <div className="mb-6 flex items-center justify-center">
+                <div className="w-12 h-12 flex items-center justify-center rounded-full border border-gray-200 transition-all duration-300 group-hover:border-[#C41E3A]">
+                  <i className={`fas ${perk.icon} text-gray-700 group-hover:text-[#C41E3A] transition duration-300`}></i>
+                </div>
               </div>
 
-              <h3 className="text-xl font-bold mb-3">{perk.title}</h3>
-              <p className="text-gray-600">{perk.description}</p>
+              {/* Title */}
+              <h3 className="text-lg font-semibold text-[#1A202C] text-center mb-3">
+                {perk.title}
+              </h3>
+
+              {/* Description */}
+              <p className="text-gray-500 text-sm text-center leading-relaxed">
+                {perk.description}
+              </p>
+
+              {/* Bottom line */}
+              <div className="mt-6 h-[2px] w-6 bg-gray-200 mx-auto transition-all duration-300 group-hover:w-12 group-hover:bg-[#C41E3A]"></div>
+
             </div>
           ))}
         </div>
