@@ -277,6 +277,7 @@
 
 import { useState } from 'react';
 import axios from 'axios';
+import { FaEnvelope, FaMapMarkerAlt, FaPhoneAlt, FaTint } from 'react-icons/fa';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -319,114 +320,141 @@ const Contact = () => {
   };
 
   return (
-    <section className="relative min-h-screen py-16 overflow-hidden">
+    <section className="bg-gov-grey min-h-screen">
+      <div className="gov-page py-12 md:py-16">
+        <div className="border-2 border-gov-border bg-white p-8 md:p-12 lg:p-14 rounded-lg">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-8 pb-6 border-b-2 border-gov-red">
+            <FaTint className="text-gov-red w-11 h-11 shrink-0" aria-hidden />
+            <div className="text-left">
+              <h1 className="text-2xl md:text-3xl font-bold text-gov-red uppercase tracking-wide">
+                Contact Us
+              </h1>
+              <p className="text-sm md:text-base text-neutral-700 mt-2 uppercase tracking-wide">
+                Get in touch for queries or support
+              </p>
+            </div>
+          </div>
 
-      {/* 🌄 Background Image */}
-      <img
-        src="https://images.unsplash.com/photo-1492724441997-5dc865305da7"
-        alt="bg"
-        className="absolute inset-0 w-full h-full object-cover"
-      />
-
-      {/* 🌈 Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-black/60 backdrop-blur-[2px]"></div>
-
-      {/* ✨ Floating Blobs */}
-      <div className="absolute w-[300px] h-[300px] bg-primary/30 rounded-full blur-3xl animate-blob top-10 left-10"></div>
-      <div className="absolute w-[250px] h-[250px] bg-pink-400/30 rounded-full blur-3xl animate-blob animation-delay-2000 bottom-10 right-10"></div>
-      <div className="absolute w-[200px] h-[200px] bg-blue-400/30 rounded-full blur-3xl animate-blob animation-delay-4000 top-1/2 left-1/3"></div>
-
-      {/* CONTENT */}
-      <div className="relative z-10 container mx-auto px-4">
-        <div className="max-w-5xl mx-auto">
-
-          <h1 className="text-4xl md:text-5xl font-bold text-white text-center mb-4 animate-slideDown drop-shadow-xl">
-            Contact Us
-          </h1>
-
-          <p className="text-center text-gray-200 mb-10">
-            Get in touch with us for any queries or support
-          </p>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-
-            {/* LEFT */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14">
             <div className="space-y-6">
-
-              {[
-                { title: "Address", value: "New Delhi, India" },
-                { title: "Phone", value: "+91 8674392xxx" },
-                { title: "Email", value: "info@pulseconnect.com" }
-              ].map((item, i) => (
-                <div
-                  key={i}
-                  className="bg-white/10 backdrop-blur-xl border border-white/20 text-white p-6 rounded-2xl shadow-xl transition duration-300 hover:scale-105 hover:-translate-y-2 hover:shadow-2xl"
-                >
-                  <h3 className="font-semibold text-lg mb-1">{item.title}</h3>
-                  <p className="text-gray-200">{item.value}</p>
+              <div className="border-2 border-gov-border bg-gov-panel p-6 rounded-md">
+                <div className="flex items-start gap-4">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-sm border-2 border-gov-border bg-white text-gov-red shrink-0">
+                    <FaMapMarkerAlt aria-hidden />
+                  </span>
+                  <div className="text-left">
+                    <h2 className="font-bold text-neutral-900 uppercase tracking-wide text-sm">
+                      Address
+                    </h2>
+                    <p className="text-neutral-700 mt-2">New Delhi, India</p>
+                  </div>
                 </div>
-              ))}
+              </div>
 
+              <div className="border-2 border-gov-border bg-gov-panel p-6 rounded-md">
+                <div className="flex items-start gap-4">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-sm border-2 border-gov-border bg-white text-gov-red shrink-0">
+                    <FaPhoneAlt aria-hidden />
+                  </span>
+                  <div className="text-left">
+                    <h2 className="font-bold text-neutral-900 uppercase tracking-wide text-sm">
+                      Phone
+                    </h2>
+                    <p className="text-neutral-700 mt-2">+91 8674392xxx</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="border-2 border-gov-border bg-gov-panel p-6 rounded-md">
+                <div className="flex items-start gap-4">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-sm border-2 border-gov-border bg-white text-gov-red shrink-0">
+                    <FaEnvelope aria-hidden />
+                  </span>
+                  <div className="text-left">
+                    <h2 className="font-bold text-neutral-900 uppercase tracking-wide text-sm">
+                      Email
+                    </h2>
+                    <p className="text-neutral-700 mt-2">info@pulseconnect.com</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-gov-yellow/80 border-l-4 border-gov-red pl-4 py-3 rounded-sm">
+                <p className="text-sm text-neutral-900 leading-relaxed">
+                  For urgent requirements, please contact your nearest hospital or licensed blood bank.
+                </p>
+              </div>
             </div>
 
-            {/* FORM */}
-            <div className="bg-white/10 backdrop-blur-xl border border-white/20 p-8 rounded-2xl shadow-2xl animate-slideUp">
-
+            <div className="border-2 border-gov-border bg-white p-6 md:p-8 rounded-md">
               {success && (
-                <div className="mb-4 bg-green-500/20 border border-green-400 text-green-200 px-4 py-3 rounded">
+                <div className="mb-4 border-2 border-emerald-600 bg-emerald-50 text-emerald-900 px-4 py-3 rounded-sm">
                   {success}
                 </div>
               )}
 
               {error && (
-                <div className="mb-4 bg-red-500/20 border border-red-400 text-red-200 px-4 py-3 rounded">
+                <div className="mb-4 border-2 border-red-700 bg-red-50 text-red-900 px-4 py-3 rounded-sm">
                   {error}
                 </div>
               )}
 
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-5">
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wide text-neutral-700 mb-2">
+                    Your Name
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 border-2 border-gov-border rounded-sm focus:outline-none focus:border-gov-red bg-white"
+                    required
+                  />
+                </div>
 
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Your Name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg bg-white/20 text-white placeholder-gray-300 border border-white/30 focus:outline-none focus:ring-2 focus:ring-primary transition focus:scale-[1.02]"
-                  required
-                />
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wide text-neutral-700 mb-2">
+                    Your Email
+                  </label>
+                  <input
+                    type="email"
+                    name="emailid"
+                    value={formData.emailid}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 border-2 border-gov-border rounded-sm focus:outline-none focus:border-gov-red bg-white"
+                    required
+                  />
+                </div>
 
-                <input
-                  type="email"
-                  name="emailid"
-                  placeholder="Your Email"
-                  value={formData.emailid}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg bg-white/20 text-white placeholder-gray-300 border border-white/30 focus:outline-none focus:ring-2 focus:ring-primary transition focus:scale-[1.02]"
-                  required
-                />
-
-                <textarea
-                  name="msgContent"
-                  placeholder="Your Message"
-                  value={formData.msgContent}
-                  onChange={handleChange}
-                  rows="5"
-                  className="w-full px-4 py-3 rounded-lg bg-white/20 text-white placeholder-gray-300 border border-white/30 focus:outline-none focus:ring-2 focus:ring-primary transition focus:scale-[1.02]"
-                  required
-                ></textarea>
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wide text-neutral-700 mb-2">
+                    Message
+                  </label>
+                  <textarea
+                    name="msgContent"
+                    value={formData.msgContent}
+                    onChange={handleChange}
+                    rows="5"
+                    className="w-full px-4 py-3 border-2 border-gov-border rounded-sm focus:outline-none focus:border-gov-red bg-white resize-y"
+                    required
+                  />
+                </div>
 
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full bg-primary text-white py-3 rounded-lg font-semibold transition duration-300 hover:scale-105 hover:shadow-xl active:scale-95 disabled:opacity-60"
+                  className="btn-gov-primary w-full justify-center disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  {loading ? 'Sending...' : 'Send Message 🚀'}
+                  {loading ? 'Sending…' : 'Send Message'}
                 </button>
 
+                <p className="text-xs text-neutral-500 leading-relaxed">
+                  Submissions are for support and general queries. Do not share sensitive medical information.
+                </p>
               </form>
             </div>
-
           </div>
         </div>
       </div>

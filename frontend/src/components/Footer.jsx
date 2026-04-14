@@ -1,129 +1,78 @@
-// import { Link } from 'react-router-dom';
-// import { FaFacebook, FaTwitter, FaInstagram, FaPhone, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
-
-// const Footer = () => {
-//   return (
-//     <footer className="bg-gray-900 text-white">
-//       <div className="container mx-auto px-16 py-8">
-//         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          
-//           {/* Company Info */}
-//           <div>
-//             <h3 className="text-lg font-bold mb-2">PulseConnect</h3>
-//             <p className="text-gray-400 text-sm">
-//               Connecting blood donors with those in need.
-//             </p>
-//           </div>
-
-//           {/* Quick Links */}
-//           <div>
-//             <h4 className="text-base font-semibold mb-2">Quick Links</h4>
-//             <ul className="space-y-1 text-sm">
-//               <li><Link to="/" className="text-gray-400 hover:text-white transition">Home</Link></li>
-//               <li><Link to="/about" className="text-gray-400 hover:text-white transition">About</Link></li>
-//               <li><Link to="/services" className="text-gray-400 hover:text-white transition">Services</Link></li>
-//               <li><Link to="/appointment" className="text-gray-400 hover:text-white transition">Register</Link></li>
-//             </ul>
-//           </div>
-
-//           {/* Contact Info */}
-//           <div>
-//             <h4 className="text-base font-semibold mb-2">Contact Us</h4>
-//             <ul className="space-y-1 text-gray-400 text-sm">
-//               <li className="flex items-center gap-2">
-//                 <FaEnvelope className="text-xs" /> info@PulseConnect.com
-//               </li>
-//               <li className="flex items-center gap-2">
-//                 <FaPhone className="text-xs" /> +91 1234567890
-//               </li>
-//               <li className="flex items-center gap-2">
-//                 <FaMapMarkerAlt className="text-xs" /> Mumbai, India
-//               </li>
-//             </ul>
-//           </div>
-
-//           {/* Social Links */}
-//           <div>
-//             <h4 className="text-base font-semibold mb-2">Follow Us</h4>
-//             <div className="flex space-x-3 text-xl">
-//               <a href="#" className="text-gray-400 hover:text-white transition">
-//                 <FaFacebook />
-//               </a>
-//               <a href="#" className="text-gray-400 hover:text-white transition">
-//                 <FaTwitter />
-//               </a>
-//               <a href="#" className="text-gray-400 hover:text-white transition">
-//                 <FaInstagram />
-//               </a>
-//             </div>
-//           </div>
-//         </div>
-
-//         {/* Bottom Bar */}
-//         <div className="border-t border-gray-800 mt-6 pt-4 text-center text-gray-400 text-xs">
-//           <p>&copy; {new Date().getFullYear()} रक्तदातृ. All rights reserved.</p>
-//         </div>
-//       </div>
-//     </footer>
-//   );
-// };
-
-// export default Footer;
 import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#0B1C2D] text-white pt-10 pb-6 border-t-4 border-red-600">
-      <div className="container mx-auto px-6">
-        
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          
-          {/* Brand */}
+    <footer className="bg-neutral-900 text-neutral-100 border-t-4 border-gov-red mt-auto">
+      <div className="gov-page py-12 md:py-14">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12 text-sm">
           <div>
-            <h2 className="text-xl font-semibold mb-3">PulseConnect</h2>
-            <p className="text-gray-400 text-sm leading-6">
-              Connecting blood donors with those in need.
-              Together, we save lives.
+            <h2 className="text-gov-yellow font-bold uppercase tracking-wide text-xs mb-3">
+              Ministry / nodal reference
+            </h2>
+            <p className="text-neutral-300 leading-relaxed">
+              This portal is inspired by national guidelines on voluntary blood donation and safe
+              transfusion practices. PulseConnect is a demonstration digital service for education
+              and facilitation; operational responsibility for clinical services rests with licensed
+              blood centres and hospitals.
             </p>
           </div>
 
-          {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-medium mb-3">Quick Links</h3>
-            <ul className="space-y-2 text-gray-400 text-sm">
-              <li><Link to="/" className="hover:text-white transition">Home</Link></li>
-              <li><Link to="/about" className="hover:text-white transition">About</Link></li>
-              <li><Link to="/services" className="hover:text-white transition">Services</Link></li>
-              <li><Link to="/appointment" className="hover:text-white transition">Register</Link></li>
+            <h2 className="text-gov-yellow font-bold uppercase tracking-wide text-xs mb-3">
+              Important links
+            </h2>
+            <ul className="space-y-2 text-neutral-300">
+              <li>
+                <Link to="/" className="hover:text-white underline-offset-2 hover:underline">
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link to="/about" className="hover:text-white underline-offset-2 hover:underline">
+                  About
+                </Link>
+              </li>
+              <li>
+                <Link to="/contact" className="hover:text-white underline-offset-2 hover:underline">
+                  Contact / Grievance
+                </Link>
+              </li>
+              <li>
+                <Link to="/services" className="hover:text-white underline-offset-2 hover:underline">
+                  Availability and services
+                </Link>
+              </li>
             </ul>
           </div>
 
-          {/* Contact */}
           <div>
-            <h3 className="text-lg font-medium mb-3">Contact Us</h3>
-            <ul className="space-y-2 text-gray-400 text-sm">
-              <li>info@PulseConnect.com</li>
-              <li>+91 1234567890</li>
-              <li>Mumbai, India</li>
+            <h2 className="text-gov-yellow font-bold uppercase tracking-wide text-xs mb-3">
+              Contact (helpline)
+            </h2>
+            <ul className="space-y-2 text-neutral-300">
+              <li>Email: info@PulseConnect.com</li>
+              <li>Phone: +91 1234567890 (10:00–18:00 IST)</li>
+              <li>Address: Mumbai, Maharashtra, India</li>
             </ul>
           </div>
 
-          {/* Social */}
           <div>
-            <h3 className="text-lg font-medium mb-3">Follow Us</h3>
-            <div className="flex space-x-4 text-gray-400">
-              <span className="hover:text-white transition cursor-pointer">Facebook</span>
-              <span className="hover:text-white transition cursor-pointer">Twitter</span>
-              <span className="hover:text-white transition cursor-pointer">Instagram</span>
-            </div>
+            <h2 className="text-gov-yellow font-bold uppercase tracking-wide text-xs mb-3">
+              Disclaimer
+            </h2>
+            <p className="text-neutral-400 text-xs leading-relaxed">
+              Content is provided for public information only. PulseConnect does not replace medical
+              advice, emergency services, or regulatory approvals. For urgent need, contact the
+              nearest hospital or licensed blood bank. Users must comply with applicable laws and
+              centre-specific screening rules.
+            </p>
           </div>
-
         </div>
 
-        <div className="border-t border-gray-700 mt-8 pt-4 text-center text-gray-500 text-sm">
-          © {new Date().getFullYear()} PulseConnect. All rights reserved.
+        <div className="border-t border-neutral-700 mt-8 pt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs text-neutral-500">
+          <p>© {new Date().getFullYear()} PulseConnect — Blood Donation Portal. All rights reserved.</p>
+          <p className="uppercase tracking-wide">Hosted in India · Secure access via national ID standards (where applicable)</p>
         </div>
-
       </div>
     </footer>
   );

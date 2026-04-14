@@ -9,10 +9,19 @@ export default {
       colors: {
         primary: '#06A3DA',
         secondary: '#FE5D37',
+        gov: {
+          red: '#8B0000',
+          redDark: '#6B0000',
+          yellow: '#F5C400',
+          grey: '#F0F2F5',
+          panel: '#F8F9FA',
+          border: '#C4C4C4',
+          text: '#1a1a1a',
+        },
       },
       fontFamily: {
-        sans: ['Open Sans', 'sans-serif'],
-        display: ['Playfair Display', 'serif'],
+        sans: ['Roboto', 'Open Sans', 'Arial', 'Helvetica', 'sans-serif'],
+        display: ['Roboto', 'Open Sans', 'Arial', 'sans-serif'],
       },
     },
   },

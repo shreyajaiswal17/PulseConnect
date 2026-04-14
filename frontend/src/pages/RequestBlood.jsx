@@ -42,18 +42,19 @@ const RequestBlood = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-20">
-      <div className="container mx-auto px-4 max-w-2xl">
-        <div className="bg-white rounded-lg shadow-lg p-8">
-          <h1 className="text-4xl font-bold text-[#17153B] mb-4 text-center">
+    <div className="min-h-screen bg-gov-grey py-10 md:py-16">
+      <div className="gov-page">
+        <div className="max-w-2xl mx-auto w-full">
+        <div className="border-2 border-gov-border bg-white p-6 md:p-8">
+          <h1 className="text-2xl font-bold text-gov-red uppercase tracking-wide border-b-2 border-gov-yellow pb-2 mb-2 text-left">
             Request Blood
           </h1>
-          <p className="text-gray-600 text-center mb-8">
-            Fill the form to find matching donors 🔍
+          <p className="text-sm text-neutral-700 mb-6 text-left leading-relaxed">
+            Complete all mandatory fields. Information will be processed in accordance with applicable guidelines.
           </p>
 
           {error && (
-            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+            <div className="bg-red-50 border-2 border-gov-red text-gov-red px-4 py-3 text-sm mb-4 rounded-sm">
               {error}
             </div>
           )}
@@ -70,7 +71,7 @@ const RequestBlood = () => {
                 value={formData.patientName}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#17153B]"
+                className="w-full px-3 py-2 border border-gov-border rounded-sm text-sm focus:outline-none focus:ring-1 focus:ring-gov-red focus:border-gov-red"
                 placeholder="Enter patient name"
               />
             </div>
@@ -86,7 +87,7 @@ const RequestBlood = () => {
                 value={formData.requesterEmail}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#17153B]"
+                className="w-full px-3 py-2 border border-gov-border rounded-sm text-sm focus:outline-none focus:ring-1 focus:ring-gov-red focus:border-gov-red"
                 placeholder="your.email@example.com"
               />
               <p className="text-sm text-gray-500 mt-1">We'll send you confirmation and donor contact details</p>
@@ -102,7 +103,7 @@ const RequestBlood = () => {
                 value={formData.bloodGroup}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#17153B]"
+                className="w-full px-3 py-2 border border-gov-border rounded-sm text-sm focus:outline-none focus:ring-1 focus:ring-gov-red focus:border-gov-red"
               >
                 <option value="">Select Blood Group</option>
                 {bloodGroups.map((group) => (
@@ -122,7 +123,7 @@ const RequestBlood = () => {
                 value={formData.city}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#17153B]"
+                className="w-full px-3 py-2 border border-gov-border rounded-sm text-sm focus:outline-none focus:ring-1 focus:ring-gov-red focus:border-gov-red"
                 placeholder="Enter city"
               />
             </div>
@@ -139,7 +140,7 @@ const RequestBlood = () => {
                 onChange={handleChange}
                 required
                 pattern="[0-9]{10}"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#17153B]"
+                className="w-full px-3 py-2 border border-gov-border rounded-sm text-sm focus:outline-none focus:ring-1 focus:ring-gov-red focus:border-gov-red"
                 placeholder="Enter 10-digit phone number"
               />
             </div>
@@ -154,7 +155,7 @@ const RequestBlood = () => {
                 value={formData.note}
                 onChange={handleChange}
                 rows="4"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#17153B]"
+                className="w-full px-3 py-2 border border-gov-border rounded-sm text-sm focus:outline-none focus:ring-1 focus:ring-gov-red focus:border-gov-red"
                 placeholder="Any additional information..."
               />
             </div>
@@ -163,11 +164,12 @@ const RequestBlood = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-[#17153B] text-white py-3 rounded-lg font-medium hover:bg-[#26235A] transition disabled:bg-gray-400"
+              className="btn-gov-primary w-full disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {loading ? 'Searching...' : 'Find Donors'}
+              {loading ? 'Searching…' : 'Find Blood'}
             </button>
           </form>
+        </div>
         </div>
       </div>
     </div>
