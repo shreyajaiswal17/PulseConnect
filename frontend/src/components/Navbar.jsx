@@ -150,9 +150,7 @@ const Navbar = () => {
               <span className="font-bold text-base sm:text-lg uppercase tracking-tight text-white truncate">
                 PulseConnect
               </span>
-              <span className="text-[10px] sm:text-xs text-white/75 uppercase tracking-wider hidden sm:block">
-                Voluntary blood donation
-              </span>
+              
             </div>
           </NavLink>
 
