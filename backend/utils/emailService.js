@@ -3,12 +3,33 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+// Email validation function
+const isValidEmail = (email) => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const isValidFormat = emailRegex.test(email);
+  
+  // Prevent test/fake emails
+  const testDomains = ['test.com', 'example.com', 'test.user', 'localhost', 'invalid'];
+  const isDomainFake = testDomains.some(domain => email.toLowerCase().includes(domain));
+  
+  return isValidFormat && !isDomainFake;
+};
+
 // Create transporter using Gmail
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
     user: process.env.EMAIL_USER, // Your Gmail
     pass: process.env.EMAIL_PASS  // App Password (not regular password)
+  }
+});
+
+// Verify transporter connection
+transporter.verify((error, success) => {
+  if (error) {
+    console.error('❌ Email service connection failed:', error.message);
+  } else {
+    console.log('✅ Email service ready - SMTP connection verified');
   }
 });
 
@@ -37,7 +58,7 @@ export const sendBloodRequestEmail = async (donorEmail, donorName, requestDetail
           ${note ? `<p><strong>Note:</strong> ${note}</p>` : ''}
         </div>
         
-        <p style="color: #e74c3c; font-weight: bold;">⏰ Your help can save a life!</p>
+        <p style="color: #e74c3c; font-weight: bold;"> Your help can save a life!</p>
         
         <p>If you're available to donate, please contact the requester immediately at <strong>${phone}</strong></p>
         
@@ -52,11 +73,17 @@ export const sendBloodRequestEmail = async (donorEmail, donorName, requestDetail
   };
 
   try {
-    await transporter.sendMail(mailOptions);
-    console.log(`✅ Email sent to ${donorEmail}`);
+    // Validate email before sending
+    if (!isValidEmail(donorEmail)) {
+      console.warn(`⚠️ Invalid email address: ${donorEmail} - Email not sent`);
+      return false;
+    }
+
+    const info = await transporter.sendMail(mailOptions);
+    console.log(`✅ Email sent successfully to ${donorEmail} | Message ID: ${info.messageId}`);
     return true;
   } catch (error) {
-    console.error(`❌ Email failed to ${donorEmail}:`, error.message);
+    console.error(`❌ Email failed to ${donorEmail}: ${error.message}`);
     return false;
   }
 };
@@ -84,14 +111,14 @@ export const sendRequestConfirmationEmail = async (requesterEmail, requestDetail
         </div>
         
         <p style="color: #27ae60; font-weight: bold;">
-          ${matchCount > 0 ? `🎉 Great news! We found ${matchCount} matching donor(s) and they have been notified via email.` : '⚠️ No matching donors found yet. We will notify you when donors register.'}
+          ${matchCount > 0 ? `Great news! We found ${matchCount} matching donor(s) and they have been notified via email.` : ' No matching donors found yet. We will notify you when donors register.'}
         </p>
         
         <p>You will be contacted by donors directly.</p>
         
         <div style="text-align: center; margin-top: 30px;">
           <p style="font-size: 12px; color: #666;">
-            Best wishes from PulseConnect Team 🙏<br/>
+            Best wishes from PulseConnect Team<br/>
             Together we save lives!
           </p>
         </div>
@@ -100,11 +127,68 @@ export const sendRequestConfirmationEmail = async (requesterEmail, requestDetail
   };
 
   try {
-    await transporter.sendMail(mailOptions);
-    console.log(`✅ Confirmation email sent to ${requesterEmail}`);
+    // Validate email before sending
+    if (!isValidEmail(requesterEmail)) {
+      console.warn(`⚠️ Invalid email address: ${requesterEmail} - Email not sent`);
+      return false;
+    }
+
+    const info = await transporter.sendMail(mailOptions);
+    console.log(`✅ Confirmation email sent to ${requesterEmail} | Message ID: ${info.messageId}`);
     return true;
   } catch (error) {
-    console.error(`❌ Confirmation email failed:`, error.message);
+    console.error(`❌ Confirmation email failed to ${requesterEmail}: ${error.message}`);
+    return false;
+  }
+};
+
+// Send contact form confirmation email
+export const sendContactConfirmationEmail = async (userEmail, userName, contactDetails) => {
+  const { subject, message } = contactDetails;
+
+  const mailOptions = {
+    from: process.env.EMAIL_USER,
+    to: userEmail,
+    subject: `We received your message - ${subject}`,
+    html: `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 2px solid #3498db; border-radius: 10px;">
+        <h2 style="color: #3498db; text-align: center;"> Message Received</h2>
+        
+        <p>Dear <strong>${userName}</strong>,</p>
+        
+        <p>Thank you for reaching out to us! We have successfully received your message.</p>
+        
+        <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 20px 0;">
+          <h3 style="color: #333; margin-top: 0;">Your Message Details:</h3>
+          <p><strong>Subject:</strong> ${subject}</p>
+          <p><strong>Message:</strong></p>
+          <p style="color: #555; font-style: italic;">${message.replace(/\n/g, '<br/>')}</p>
+        </div>
+        
+        <p>Our team will review your message and get back to you as soon as possible. We typically respond within 24-48 hours.</p>
+        
+        <div style="text-align: center; margin-top: 30px;">
+          <p style="font-size: 12px; color: #666;">
+            Thank you for contacting PulseConnect <br/>
+            Saving lives, one donation at a time.
+          </p>
+        </div>
+      </div>
+    `
+  };
+
+  try {
+    // Validate email before sending
+    if (!isValidEmail(userEmail)) {
+      console.warn(`⚠️ Invalid email address: ${userEmail} - Email not sent`);
+      return false;
+    }
+
+    const info = await transporter.sendMail(mailOptions);
+    console.log(`✅ Contact confirmation email sent to ${userEmail} | Message ID: ${info.messageId}`);
+    return true;
+  } catch (error) {
+    console.error(`❌ Contact confirmation email failed to ${userEmail}: ${error.message}`);
     return false;
   }
 };

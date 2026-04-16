@@ -1,5 +1,6 @@
 import express from 'express';
 import Contact from '../models/contact.js';
+import { sendContactConfirmationEmail } from '../utils/emailService.js';
 
 const router = express.Router();
 
@@ -14,6 +15,9 @@ router.post('/', async (req, res) => {
 
     const contact = new Contact({ name, email, subject, message });
     await contact.save();
+
+    // Send confirmation email to user
+    await sendContactConfirmationEmail(email, name, { subject, message });
 
     res.status(201).json({ 
       message: 'Message sent successfully! We will get back to you soon.',
