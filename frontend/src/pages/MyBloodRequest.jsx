@@ -40,7 +40,7 @@ const MyBloodRequest = () => {
       }
 
       const response = await axios.get(
-        `http://localhost:5000/api/requests/${requestId}/matches`
+        `${import.meta.env.VITE_API_URL}/api/requests/${requestId}/matches`
       );
 
       setRequest(response.data.request);

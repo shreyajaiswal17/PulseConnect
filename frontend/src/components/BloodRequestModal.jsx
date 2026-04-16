@@ -30,7 +30,7 @@ const BloodRequestModal = ({ donor, onClose, onSubmitSuccess }) => {
     setError('');
 
     try {
-      const response = await axios.post('http://localhost:5000/api/requests', formData);
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/requests`, formData);
       const newRequestId = response.data.request._id;
       
       // Store requestId in localStorage

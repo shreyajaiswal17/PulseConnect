@@ -30,7 +30,7 @@ const AvailableDonors = () => {
     try {
       setLoading(true);
       setError('');
-      const response = await axios.get('http://localhost:5000/api/donors');
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/donors`);
       setDonors(response.data.donors);
     } catch (err) {
       setError(err.response?.data?.message || 'Failed to load available donors. Please try again.');
