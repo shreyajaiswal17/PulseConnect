@@ -1,16 +1,7 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-import {
-  FaTint,
-  FaHeartbeat,
-  FaSearch,
-  FaHospital,
-  FaUsers,
-  FaIdCard,
-  FaInfoCircle,
-  FaUser,
-} from "react-icons/fa";
+import { FaTint, FaSearch, FaHospital, FaUsers } from "react-icons/fa";
 import About from "./About";
 import homeVideo from "../assets/img/homevideo1.mp4";
 
@@ -44,20 +35,6 @@ const SERVICE_TABS = [
       secondary: false,
     },
   },
-  {
-    id: "dashboard",
-    label: "Citizen Dashboard",
-    Icon: FaIdCard,
-    body: "Signed-in users can access the dashboard for pledges, donor registration, blood requests, and related information in one place.",
-    cta: { label: "Open Dashboard", to: "/dashboard", secondary: false },
-  },
-  {
-    id: "aboutTab",
-    label: "About Portal",
-    Icon: FaInfoCircle,
-    body: "PulseConnect is a digital facilitation portal aligned with national emphasis on voluntary, non-remunerated donation and safe transfusion practices.",
-    cta: { label: "About PulseConnect", to: "/about", secondary: true },
-  },
 ];
 
 const Home = () => {
@@ -78,18 +55,12 @@ const Home = () => {
   const ActiveIcon = active.Icon;
 
   const handleTabCta = (to) => {
-    const protectedPaths = ["/request-blood", "/register-donor", "/dashboard"];
+    const protectedPaths = ["/request-blood", "/register-donor"];
     if (protectedPaths.includes(to)) {
       goProtected(to);
     } else {
       navigate(to);
     }
-  };
-
-  const scrollToEligibility = () => {
-    document
-      .getElementById("eligibility-criteria")
-      ?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   if (!isAuthenticated) {
@@ -116,7 +87,11 @@ const Home = () => {
             <div className="gov-page">
               <button
                 type="button"
-                onClick={() => document.getElementById("public-about")?.scrollIntoView({ behavior: "smooth", block: "start" })}
+                onClick={() =>
+                  document
+                    .getElementById("public-about")
+                    ?.scrollIntoView({ behavior: "smooth", block: "start" })
+                }
                 className="mx-auto block text-white/90 text-xs font-bold uppercase tracking-widest"
               >
                 Scroll 👇🏻
@@ -146,12 +121,14 @@ const Home = () => {
                 </h2>
                 <div className="h-1 w-16 bg-gov-red mb-6" aria-hidden />
                 <p className="text-neutral-700 leading-relaxed text-base md:text-lg">
-                  PulseConnect aims to address critical challenges in the blood donation process, including donor
-                  engagement, intelligent matching, and faster response during emergencies.
+                  PulseConnect aims to address critical challenges in the blood
+                  donation process, including donor engagement, intelligent
+                  matching, and faster response during emergencies.
                 </p>
                 <p className="text-neutral-700 leading-relaxed text-base md:text-lg mt-4">
-                  We connect donors, patients, hospitals, and blood banks through a secure digital experience — making
-                  access to safe blood more timely and transparent.
+                  We connect donors, patients, hospitals, and blood banks
+                  through a secure digital experience — making access to safe
+                  blood more timely and transparent.
                 </p>
 
                 <div className="mt-8 flex flex-col sm:flex-row gap-3">
@@ -202,22 +179,20 @@ const Home = () => {
 
         <div className="gov-page py-14 md:py-20 lg:py-24 relative z-10">
           <div className="border-neutral-800 px-4 py-2 inline-block mb-6">
-            <p className="text-xs sm:text-sm font-bold uppercase tracking-wide text-neutral-900">
-            </p>
+            <p className="text-xs sm:text-sm font-bold uppercase tracking-wide text-neutral-900"></p>
           </div>
 
           <h1
             id="hero-heading"
             className="text-3xl sm:text-4xl md:text-5xl lg:text-[2.75rem] font-bold text-white uppercase tracking-tight max-w-4xl leading-tight mb-6"
           >
-            Pledge for Voluntary Blood Donation
+            Connecting Lives Through Every Drop
           </h1>
 
           <p className="text-white/85 max-w-3xl text-base md:text-lg mb-10 leading-relaxed text-left">
-            Voluntary, non-remunerated blood donation is the foundation of a
-            safe and sufficient blood supply. This portal facilitates donor
-            registration and blood requests in line with national guidelines for
-            transparency, traceability, and timely access.
+            PulseConnect empowers individuals to contribute through voluntary
+            blood donation while ensuring fast and reliable access during
+            emergencies, making every connection count.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-5">
@@ -321,87 +296,6 @@ const Home = () => {
                     aria-hidden
                   />
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Who Can Donate */}
-      <section
-        className="border-t-2 border-gov-border bg-white"
-        aria-labelledby="donate-who-heading"
-      >
-        <div className="gov-page py-14 md:py-20 lg:py-24">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
-            <div className="text-left space-y-6">
-              <h2
-                id="donate-who-heading"
-                className="text-2xl md:text-3xl font-bold text-gov-red uppercase tracking-wide"
-              >
-                Who Can Donate
-              </h2>
-              <p className="text-neutral-800 text-base md:text-lg leading-relaxed">
-                Most healthy adults who meet age, weight, and haemoglobin
-                criteria may donate whole blood. Final eligibility is always
-                decided by the medical officer at the blood centre after
-                screening and history — online registration does not replace
-                on-site assessment.
-              </p>
-              <div className="flex flex-col sm:flex-row flex-wrap gap-4 pt-2">
-                <button
-                  type="button"
-                  onClick={scrollToEligibility}
-                  className="btn-gov-primary px-8 py-3 text-base"
-                >
-                  Check your eligibility
-                </button>
-                <Link
-                  to="/contact"
-                  className="btn-gov-secondary px-8 py-3 text-base text-center inline-flex items-center justify-center"
-                >
-                  Find Nearby Camps
-                </Link>
-              </div>
-
-              <div
-                id="eligibility-criteria"
-                className="pt-10 scroll-mt-[100px] md:scroll-mt-[110px]"
-              >
-                <h3 className="text-sm font-bold text-gov-red uppercase tracking-wide border-b-2 border-gov-yellow pb-2 mb-4">
-                  Indicative eligibility (general)
-                </h3>
-                <ul className="list-disc list-outside ml-5 space-y-2 text-neutral-800 text-base leading-relaxed">
-                </ul>
-                <p className="text-sm text-neutral-600 mt-4 leading-relaxed">
-                  For the full about section and objectives of this portal, see{" "}
-                  <Link
-                    to="/about"
-                    className="text-gov-red font-bold underline"
-                  >
-                    About PulseConnect
-                  </Link>
-                  .
-                </p>
-              </div>
-            </div>
-
-            <div className="relative min-h-[280px] lg:min-h-[360px] rounded-lg overflow-hidden border-2 border-gov-border bg-white">
-              <img
-                src="https://images.unsplash.com/photo-1615461066841-6116e61058f4?auto=format&fit=crop&w=1200&q=80"
-                alt="Blood donation at a medical camp"
-                className="absolute inset-0 w-full h-full object-cover"
-                loading="lazy"
-                decoding="async"
-              />
-              <div className="absolute inset-0 bg-gradient-to-tr from-neutral-950/65 via-neutral-950/20 to-transparent" aria-hidden />
-              <div className="absolute left-6 bottom-6 right-6 text-left">
-                <p className="text-white/90 text-xs font-bold uppercase tracking-widest">
-                  Donate at licensed centres
-                </p>
-                <p className="text-white/85 text-sm mt-2 max-w-sm leading-relaxed">
-                  Eligibility is confirmed on-site by authorised medical staff.
-                </p>
               </div>
             </div>
           </div>
