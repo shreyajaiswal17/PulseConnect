@@ -282,8 +282,9 @@ import { FaEnvelope, FaMapMarkerAlt, FaPhoneAlt, FaTint } from 'react-icons/fa';
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
-    emailid: '',
-    msgContent: ''
+    email: '',
+    subject: '',
+    message: ''
   });
 
   const [loading, setLoading] = useState(false);
@@ -306,12 +307,13 @@ const Contact = () => {
     try {
       const res = await axios.post('http://localhost:5000/api/contact', {
         name: formData.name,
-        email: formData.emailid,
-        message: formData.msgContent
+        email: formData.email,
+        subject: formData.subject,
+        message: formData.message
       });
 
       setSuccess(res.data?.message || 'Message sent successfully!');
-      setFormData({ name: '', emailid: '', msgContent: '' });
+      setFormData({ name: '', email: '', subject: '', message: '' });
     } catch (err) {
       setError(err.response?.data?.message || 'Failed to send message.');
     } finally {
@@ -420,8 +422,22 @@ const Contact = () => {
                   </label>
                   <input
                     type="email"
-                    name="emailid"
-                    value={formData.emailid}
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 border-2 border-gov-border rounded-sm focus:outline-none focus:border-gov-red bg-white"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wide text-neutral-700 mb-2">
+                    Subject
+                  </label>
+                  <input
+                    type="text"
+                    name="subject"
+                    value={formData.subject}
                     onChange={handleChange}
                     className="w-full px-4 py-3 border-2 border-gov-border rounded-sm focus:outline-none focus:border-gov-red bg-white"
                     required
@@ -433,8 +449,8 @@ const Contact = () => {
                     Message
                   </label>
                   <textarea
-                    name="msgContent"
-                    value={formData.msgContent}
+                    name="message"
+                    value={formData.message}
                     onChange={handleChange}
                     rows="5"
                     className="w-full px-4 py-3 border-2 border-gov-border rounded-sm focus:outline-none focus:border-gov-red bg-white resize-y"
