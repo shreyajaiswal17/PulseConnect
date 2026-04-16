@@ -32,7 +32,7 @@ const RegisterDonor = () => {
     setError('');
 
     try {
-      const response = await axios.post('http://localhost:5000/api/donors', formData);
+      const response = await axios.post('http://localhost:5001/api/donors', formData);
       setMessage(response.data.message);
       setFormData({ name: '', email: '', bloodGroup: '', city: '', phone: '', receiveAlerts: true });
     } catch (err) {

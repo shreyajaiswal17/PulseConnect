@@ -186,6 +186,14 @@ const Navbar = () => {
             <NavSep />
             <button
               type="button"
+              className={protectedClass("/available-donors")}
+              onClick={() => handleProtectedClick("/available-donors")}
+            >
+              Find Donors
+            </button>
+            <NavSep />
+            <button
+              type="button"
               className={protectedClass("/dashboard")}
               onClick={() => handleProtectedClick("/dashboard")}
             >
@@ -248,6 +256,13 @@ const Navbar = () => {
                 onClick={() => handleProtectedClick("/register-donor")}
               >
                 Want to Donate
+              </button>
+              <button
+                type="button"
+                className={`${protectedClass("/available-donors")} border-b border-white/15`}
+                onClick={() => handleProtectedClick("/available-donors")}
+              >
+                Find Donors
               </button>
               <button
                 type="button"

@@ -11,6 +11,7 @@ import Contact from './pages/Contact';
 import Dashboard from './pages/Dashboard';
 import RegisterDonor from './pages/RegisterDonor';
 import RequestBlood from './pages/RequestBlood';
+import AvailableDonors from './pages/AvailableDonors';
 import Matches from './pages/BloodMatch';
 import NotFound from './pages/NotFound';
 
@@ -41,6 +42,11 @@ function App() {
           <Route path="/request-blood" element={
             <ProtectedRoute>
               <RequestBlood />
+            </ProtectedRoute>
+          } />
+          <Route path="/available-donors" element={
+            <ProtectedRoute>
+              <AvailableDonors />
             </ProtectedRoute>
           } />
           <Route path="/matches/:id" element={
