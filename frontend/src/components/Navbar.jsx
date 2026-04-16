@@ -189,7 +189,7 @@ const Navbar = () => {
               className={protectedClass("/available-donors")}
               onClick={() => handleProtectedClick("/available-donors")}
             >
-              Find Donors
+              Availabale Donors
             </button>
             <NavSep />
             <button
