@@ -201,9 +201,8 @@ const Home = () => {
         />
 
         <div className="gov-page py-14 md:py-20 lg:py-24 relative z-10">
-          <div className="bg-gov-yellow border-2 border-neutral-800 px-4 py-2 inline-block mb-6">
+          <div className="border-neutral-800 px-4 py-2 inline-block mb-6">
             <p className="text-xs sm:text-sm font-bold uppercase tracking-wide text-neutral-900">
-              Official information — voluntary blood donation
             </p>
           </div>
 
@@ -373,16 +372,6 @@ const Home = () => {
                   Indicative eligibility (general)
                 </h3>
                 <ul className="list-disc list-outside ml-5 space-y-2 text-neutral-800 text-base leading-relaxed">
-                  <li>Age typically 18–65 years (as per centre policy).</li>
-                  <li>Minimum weight often 50 kg for whole blood donation.</li>
-                  <li>
-                    Haemoglobin and vital signs within acceptable range on the
-                    day of donation.
-                  </li>
-                  <li>
-                    No active infection; deferral rules apply for recent travel,
-                    procedures, or medications.
-                  </li>
                 </ul>
                 <p className="text-sm text-neutral-600 mt-4 leading-relaxed">
                   For the full about section and objectives of this portal, see{" "}

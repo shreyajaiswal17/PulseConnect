@@ -12,7 +12,6 @@ const About = () => {
                 About PulseConnect
               </h2>
               <p className="text-sm md:text-base text-neutral-700 mt-2 uppercase tracking-wide">
-                Digital facilitation for donors, patients, and blood banks
               </p>
             </div>
           </div>
@@ -25,7 +24,6 @@ const About = () => {
                 className="w-full h-auto object-cover border border-gov-border rounded-sm"
               />
               <p className="text-xs text-neutral-600 mt-3 uppercase tracking-wide leading-relaxed">
-                Figure: Voluntary donation saves lives — donate only at licensed blood centres.
               </p>
             </div>
 
@@ -34,29 +32,19 @@ const About = () => {
                 <p className="font-bold uppercase text-sm tracking-wide text-neutral-900">Mission</p>
               </div>
               <p>
-                PulseConnect addresses critical challenges in the blood donation ecosystem: donor
-                engagement, matching of requests, and timely access to safe blood. The platform is
-                designed to reduce delays and improve response during emergencies.
-              </p>
-              <p>
-                With shortages remaining a serious healthcare concern, PulseConnect provides a unified
-                digital channel connecting donors, patients, hospitals, and blood banks — supporting
-                transparency and faster communication between stakeholders.
-              </p>
-              <p>
-                By using secure authentication and structured data, the portal aims to strengthen
-                public participation and support institutional blood transfusion services.
-              </p>
+  PulseConnect is a smart blood donation platform designed to bridge the gap between donors, patients, hospitals, and blood banks. It focuses on solving critical challenges such as delayed response, inefficient donor matching, and lack of real-time communication during emergencies.
+</p>
 
-              <hr className="border-gov-border" />
+<p>
+  In situations where every second matters, PulseConnect enables quick access to verified donors and streamlines the process of requesting and supplying blood. By creating a unified digital ecosystem, the platform ensures transparency, reliability, and faster coordination among all stakeholders.
+</p>
 
-              <h3 className="font-bold text-gov-red uppercase text-sm tracking-wide">Key objectives</h3>
-              <ol className="list-decimal list-outside ml-5 space-y-3 text-neutral-800">
-                <li>Promote voluntary, repeat, and low-risk blood donation.</li>
-                <li>Enable verified users to register as donors or submit blood requests.</li>
-                <li>Improve traceability of requests while protecting personal data.</li>
-              </ol>
-            </div>
+<p>
+  With secure authentication and well-structured data management, PulseConnect not only enhances trust but also encourages active community participation. Our goal is to make blood availability more accessible, reduce shortages, and ultimately save lives through technology-driven solutions.
+</p>
+
+              <hr className="border-gov-border" /> 
+                 </div>
           </div>
         </div>
       </div>
