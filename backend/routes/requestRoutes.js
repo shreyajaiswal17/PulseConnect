@@ -18,10 +18,9 @@ router.post('/', async (req, res) => {
     const request = new Request({ patientName, requesterEmail, bloodGroup, city, phone, note });
     await request.save();
 
-    // Find matching donors who opted-in for alerts
+    // Find matching donors who opted-in for alerts (by blood group only)
     const matchingDonors = await Donor.find({
       bloodGroup: request.bloodGroup,
-      city: request.city,
       receiveAlerts: true,
       isAvailable: true
     });
@@ -69,10 +68,9 @@ router.get('/:id/matches', async (req, res) => {
       return res.status(404).json({ message: 'Request not found' });
     }
 
-    // Find donors with same blood group and city
+    // Find donors with same blood group (country-wide)
     const matchingDonors = await Donor.find({
-      bloodGroup: request.bloodGroup,
-      city: request.city
+      bloodGroup: request.bloodGroup
     });
 
     res.status(200).json({ 

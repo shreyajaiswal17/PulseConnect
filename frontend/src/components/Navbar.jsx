@@ -34,7 +34,7 @@ const Navbar = () => {
   };
 
   const linkBase =
-    "text-sm font-semibold uppercase tracking-wide text-white px-4 lg:px-6 py-2.5 rounded-sm whitespace-nowrap";
+    "text-xs font-semibold uppercase tracking-wide text-white px-2 lg:px-3 py-2 rounded-sm whitespace-nowrap";
 
   const navLinkClass = ({ isActive }) =>
     `${linkBase} ${isActive ? "bg-white/20 ring-1 ring-white/35" : "hover:bg-white/10"}`;
@@ -157,7 +157,7 @@ const Navbar = () => {
           </NavLink>
 
           <nav
-            className="hidden lg:flex items-center justify-center flex-1 gap-0 min-w-0 px-4"
+            className="hidden lg:flex items-center justify-center flex-1 gap-1 min-w-0 px-2"
             aria-label="Primary"
           >
             <NavLink to="/" end className={navLinkClass}>
@@ -190,6 +190,14 @@ const Navbar = () => {
               onClick={() => handleProtectedClick("/available-donors")}
             >
               Find Donors
+            </button>
+            <NavSep />
+            <button
+              type="button"
+              className={protectedClass("/my-blood-request")}
+              onClick={() => handleProtectedClick("/my-blood-request")}
+            >
+              My Request
             </button>
             <NavSep />
             <button
@@ -263,6 +271,13 @@ const Navbar = () => {
                 onClick={() => handleProtectedClick("/available-donors")}
               >
                 Find Donors
+              </button>
+              <button
+                type="button"
+                className={`${protectedClass("/my-blood-request")} border-b border-white/15`}
+                onClick={() => handleProtectedClick("/my-blood-request")}
+              >
+                My Request
               </button>
               <button
                 type="button"

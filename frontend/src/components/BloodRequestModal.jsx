@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const BloodRequestModal = ({ donor, onClose, onSubmitSuccess }) => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     patientName: '',
     requesterEmail: '',
@@ -13,6 +15,7 @@ const BloodRequestModal = ({ donor, onClose, onSubmitSuccess }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
+  const [requestId, setRequestId] = useState(null);
 
   const handleChange = (e) => {
     setFormData({
@@ -27,13 +30,13 @@ const BloodRequestModal = ({ donor, onClose, onSubmitSuccess }) => {
     setError('');
 
     try {
-      await axios.post('http://localhost:5000/api/requests', formData);
-      setSuccess(true);
+      const response = await axios.post('http://localhost:5000/api/requests', formData);
+      const newRequestId = response.data.request._id;
       
-      // Close modal after brief delay to show success message
-      setTimeout(() => {
-        onSubmitSuccess();
-      }, 1500);
+      // Store requestId in localStorage
+      localStorage.setItem('lastRequestId', newRequestId);
+      setRequestId(newRequestId);
+      setSuccess(true);
     } catch (err) {
       setError(err.response?.data?.message || 'Failed to submit blood request. Please try again.');
     } finally {
@@ -74,8 +77,29 @@ const BloodRequestModal = ({ donor, onClose, onSubmitSuccess }) => {
 
           {/* Success Message */}
           {success && (
-            <div className="bg-green-50 border-2 border-green-600 text-green-800 px-4 py-3 text-sm mb-4 rounded-sm">
-              ✓ Blood request submitted successfully! Donors will be notified.
+            <div className="bg-green-50 border-2 border-green-600 p-4 mb-4 rounded-sm">
+              <p className="text-green-800 text-sm font-semibold mb-4">
+                ✓ Blood request submitted successfully! Donors will be notified.
+              </p>
+              <div className="flex gap-3">
+                <button
+                  type="button"
+                  onClick={() => navigate(`/my-blood-request/${requestId}`)}
+                  className="flex-1 px-4 py-2 bg-gov-red text-white font-medium rounded-sm hover:bg-red-700 transition text-sm"
+                >
+                  View Request Status
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    onSubmitSuccess();
+                    onClose();
+                  }}
+                  className="flex-1 px-4 py-2 border-2 border-gov-red text-gov-red font-medium rounded-sm hover:bg-red-50 transition text-sm"
+                >
+                  Continue Browsing
+                </button>
+              </div>
             </div>
           )}
 
