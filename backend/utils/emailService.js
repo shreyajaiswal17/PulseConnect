@@ -91,7 +91,7 @@ export const sendRequestConfirmationEmail = async (requesterEmail, requestDetail
         
         <div style="text-align: center; margin-top: 30px;">
           <p style="font-size: 12px; color: #666;">
-            Best wishes from रक्तदातृ Team 🙏<br/>
+            Best wishes from PulseConnect Team 🙏<br/>
             Together we save lives!
           </p>
         </div>

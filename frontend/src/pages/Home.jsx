@@ -119,7 +119,7 @@ const Home = () => {
                 onClick={() => document.getElementById("public-about")?.scrollIntoView({ behavior: "smooth", block: "start" })}
                 className="mx-auto block text-white/90 text-xs font-bold uppercase tracking-widest"
               >
-                Scroll
+                Scroll 👇🏻
               </button>
             </div>
           </div>

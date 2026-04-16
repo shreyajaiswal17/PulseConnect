@@ -11,18 +11,29 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+const mongoUri = process.env.MONGODB_URI?.trim();
 
 // Middleware
 app.use(cors());
 app.use(express.json());
 
 // db Connection
-mongoose.connect(process.env.MONGODB_URI)
-  .then(() => console.log('MongoDB Connected Successfully'))
-  .catch((err) => {
+mongoose.connection.on('connected', () => {
+  console.log('MongoDB Connected Successfully');
+});
+
+mongoose.connection.on('error', (err) => {
+  console.error('MongoDB Connection Error:', err.message);
+});
+
+if (!mongoUri) {
+  console.error('MongoDB Connection Error: MONGODB_URI is missing from backend/.env');
+} else {
+  mongoose.connect(mongoUri).catch((err) => {
     console.error('MongoDB Connection Error:', err.message);
-    process.exit(1);
+    console.error('Check that the Atlas cluster is active and the connection string host is correct.');
   });
+}
 
 
 // Routes

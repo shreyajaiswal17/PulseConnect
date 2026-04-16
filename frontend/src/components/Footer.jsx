@@ -4,18 +4,8 @@ const Footer = () => {
   return (
     <footer className="bg-neutral-900 text-neutral-100 border-t-4 border-gov-red mt-auto">
       <div className="gov-page py-12 md:py-14">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12 text-sm">
-          <div>
-            <h2 className="text-gov-yellow font-bold uppercase tracking-wide text-xs mb-3">
-              Ministry / nodal reference
-            </h2>
-            <p className="text-neutral-300 leading-relaxed">
-              This portal is inspired by national guidelines on voluntary blood donation and safe
-              transfusion practices. PulseConnect is a demonstration digital service for education
-              and facilitation; operational responsibility for clinical services rests with licensed
-              blood centres and hospitals.
-            </p>
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12 text-sm">
+         
 
           <div>
             <h2 className="text-gov-yellow font-bold uppercase tracking-wide text-xs mb-3">
@@ -71,7 +61,7 @@ const Footer = () => {
 
         <div className="border-t border-neutral-700 mt-8 pt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs text-neutral-500">
           <p>© {new Date().getFullYear()} PulseConnect — Blood Donation Portal. All rights reserved.</p>
-          <p className="uppercase tracking-wide">Hosted in India · Secure access via national ID standards (where applicable)</p>
+          {/* <p className="uppercase tracking-wide">Hosted in India · Secure access via national ID standards (where applicable)</p> */}
         </div>
       </div>
     </footer>
