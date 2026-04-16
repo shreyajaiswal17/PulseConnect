@@ -1,15 +1,15 @@
-# PulseConnect - Blood Donation Platform
+# PulseConnect 
 
 A voluntary blood donation platform built with React (Vite), Node.js/Express, MongoDB, and Auth0 authentication. PulseConnect connects blood donors with recipients seamlessly and securely.
 
-## 📋 Prerequisites
+## Prerequisites
 
 - **Node.js** (v14+)
 - **MongoDB Atlas** account with a cluster
 - **Auth0** account with configured application
 - **Git**
 
-## 🚀 Quick Start
+##  Quick Start
 
 ### 1. Clone the Repository
 ```bash
@@ -39,7 +39,7 @@ Start the backend server:
 npm start
 ```
 
-✅ Backend running on: **http://localhost:5000**
+ Backend running on: **http://localhost:5000**
 
 ### 3. Frontend Setup
 
@@ -61,9 +61,9 @@ Start the frontend development server:
 npm run dev
 ```
 
-✅ Frontend running on: **http://localhost:5174**
+Frontend running on: **http://localhost:5174**
 
-## 🔐 Environment Variables
+##  Environment Variables
 
 ### Backend (.env)
 | Variable | Description | Example |
@@ -81,7 +81,7 @@ npm run dev
 | `VITE_AUTH0_CLIENT_ID` | Auth0 frontend app ID | `KoL0rhxjPt9SnY5TqE1Nln1eeXf6UuEJ` |
 | `VITE_API_URL` | Backend API URL | `http://localhost:5000` |
 
-## 📦 Project Structure
+##  Project Structure
 
 ```
 PulseConnect/
@@ -145,18 +145,18 @@ PulseConnect/
 └── .gitignore
 ```
 
-## 🎯 Features
+##  Features
 
-- ✅ **View Available Donors** - Browse blood donors filtered by blood group and location
-- ✅ **Request Blood** - Submit structured blood requests with patient details
-- ✅ **Track Requests** - Monitor blood request status in real-time
-- ✅ **Automatic Matching** - System automatically matches donors by blood group (nationwide)
-- ✅ **Email Notifications** - Matching donors receive instant email notifications
-- ✅ **Auth0 Protection** - Secure authentication for all sensitive pages
-- ✅ **Responsive Design** - Mobile-friendly interface
-- ✅ **MongoDB Integration** - Persistent data storage with MongoDB Atlas
+- **View Available Donors** - Browse blood donors filtered by blood group and location
+-  **Request Blood** - Submit structured blood requests with patient details
+-  **Track Requests** - Monitor blood request status in real-time
+- **Automatic Matching** - System automatically matches donors by blood group (nationwide)
+-  **Email Notifications** - Matching donors receive instant email notifications
+-  **Auth0 Protection** - Secure authentication for all sensitive pages
+-  **Responsive Design** - Mobile-friendly interface
+-  **MongoDB Integration** - Persistent data storage with MongoDB Atlas
 
-## 🔗 API Endpoints
+##  API Endpoints
 
 ### Donors
 - `GET /api/donors` - List all available donors
@@ -170,36 +170,9 @@ PulseConnect/
 ### Contact
 - `POST /api/contact` - Submit contact form
 
-## 🎨 Design System
 
-**Colors:**
-- **Gov Red**: `#8B0000` - Primary brand color
-- **Gov Yellow**: `#F5C400` - Accent color
-- **Gov Grey**: `#F0F2F5` - Background color
 
-**Framework:** Tailwind CSS with custom government theme
 
-## 🧪 Testing
 
-For development testing, use these credentials:
 
-**Auth0:** Configure your own Auth0 tenant for development
 
-**MongoDB:** Use MongoDB Atlas free tier for development
-
-## 📝 License
-
-MIT - Open source blood donation platform
-
-## 🤝 Contributing
-
-Contributions are welcome! Please follow these steps:
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/your-feature`)
-3. Commit your changes (`git commit -m 'Add your feature'`)
-4. Push to the branch (`git push origin feature/your-feature`)
-5. Open a Pull Request
-
-## 📞 Support
-
-For issues or questions, please open a GitHub issue or contact the development team.
